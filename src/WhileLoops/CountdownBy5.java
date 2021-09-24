@@ -1,3 +1,5 @@
+package WhileLoops;
+
 
 import java.util.Scanner;
 
