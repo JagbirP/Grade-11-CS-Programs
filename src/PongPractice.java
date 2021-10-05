@@ -31,21 +31,27 @@ public class PongPractice extends JComponent implements ActionListener {
     // you just need to select an approproate framerate
     int desiredFPS = 60;
     int desiredTime = Math.round((1000 / desiredFPS));
-    
+
     // timer used to run the game loop
     // this is what keeps our time running smoothly :)
     Timer gameTimer;
 
     // YOUR GAME VARIABLES WOULD GO HERE
-    
+    int ballx = 200;
+    int bally = 200;
 
+    int directionx = 3;
+    int directiony = 3;
+
+    boolean p1up = false;
+    boolean p1down = false;
+
+    int paddle1y = 200;
 
     // GAME VARIABLES END HERE    
-
-    
     // Constructor to create the Frame and place the panel in
     // You will learn more about this in Grade 12 :)
-    public PongPractice(){
+    public PongPractice() {
         // creates a windows to show my game
         JFrame frame = new JFrame(title);
 
@@ -67,12 +73,12 @@ public class PongPractice extends JComponent implements ActionListener {
         this.addMouseMotionListener(m);
         this.addMouseWheelListener(m);
         this.addMouseListener(m);
-        
+
         // Set things up for the game at startup
         setup();
 
-       // Start the game loop
-        gameTimer = new Timer(desiredTime,this);
+        // Start the game loop
+        gameTimer = new Timer(desiredTime, this);
         gameTimer.setRepeats(true);
         gameTimer.start();
     }
@@ -86,9 +92,12 @@ public class PongPractice extends JComponent implements ActionListener {
         g.clearRect(0, 0, WIDTH, HEIGHT);
 
         // GAME DRAWING GOES HERE
-        g.fillRect(50,200,20,100);
-        g.fillRect(550,200,20,100);
-        g.fillOval(290,240,20,20);
+        g.fillRect(50, paddle1y, 20, 100);
+        g.fillRect(550, 200, 20, 100);
+
+        //Pong Ball
+        g.fillOval(ballx, bally, 20, 20);
+
         // GAME DRAWING ENDS HERE
     }
 
@@ -102,7 +111,21 @@ public class PongPractice extends JComponent implements ActionListener {
     // The main game loop
     // In here is where all the logic for my game will go
     public void loop() {
-        
+        ballx = ballx + directionx;
+        bally = bally + directiony;
+
+        if (ballx > 580 || ballx < 20) {
+            directionx = directionx * -1;
+        }
+
+        if (bally > 480 || bally < 20) {
+            directiony = directiony * -1;
+        }
+        if (p1up) {
+            paddle1y = paddle1y - 5;
+        } else if (p1down) {
+            paddle1y = paddle1y + 5;
+        }
     }
 
     // Used to implement any of the Mouse Actions
@@ -139,13 +162,24 @@ public class PongPractice extends JComponent implements ActionListener {
         // if a key has been pressed down
         @Override
         public void keyPressed(KeyEvent e) {
+            int key = e.getKeyCode();
+            if (key == KeyEvent.VK_W) {
+                p1up = true;
+            } else if (key == KeyEvent.VK_S) {
+                p1down = true;
+            }
 
         }
 
         // if a key has been released
         @Override
         public void keyReleased(KeyEvent e) {
-
+            int key = e.getKeyCode();
+            if (key == KeyEvent.VK_W) {
+                p1up = false;
+            } else if (key == KeyEvent.VK_S) {
+                p1down = false;
+            }
         }
     }
 
@@ -163,7 +197,3 @@ public class PongPractice extends JComponent implements ActionListener {
         PongPractice game = new PongPractice();
     }
 }
-
-
-
-
