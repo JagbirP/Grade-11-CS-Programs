@@ -16,5 +16,5 @@ public class NewMain {
        //check if number is divisible by an integer other than 1 and itself
        while ()
     }
-    
 }
+
