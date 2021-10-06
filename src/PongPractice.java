@@ -45,8 +45,11 @@ public class PongPractice extends JComponent implements ActionListener {
 
     boolean p1up = false;
     boolean p1down = false;
+    boolean p2up = false;
+    boolean p2down = false;
 
     int paddle1y = 200;
+    int paddle2y = 200;
 
     // GAME VARIABLES END HERE    
     // Constructor to create the Frame and place the panel in
@@ -93,7 +96,7 @@ public class PongPractice extends JComponent implements ActionListener {
 
         // GAME DRAWING GOES HERE
         g.fillRect(50, paddle1y, 20, 100);
-        g.fillRect(550, 200, 20, 100);
+        g.fillRect(550, paddle2y, 20, 100);
 
         //Pong Ball
         g.fillOval(ballx, bally, 20, 20);
@@ -114,17 +117,28 @@ public class PongPractice extends JComponent implements ActionListener {
         ballx = ballx + directionx;
         bally = bally + directiony;
 
-        if (ballx > 580 || ballx < 20) {
+        if (ballx > 580 || ballx < 10) {
             directionx = directionx * -1;
         }
 
-        if (bally > 480 || bally < 20) {
+        if (bally > 480 || bally < 10) {
             directiony = directiony * -1;
         }
         if (p1up) {
             paddle1y = paddle1y - 5;
         } else if (p1down) {
             paddle1y = paddle1y + 5;
+        }
+        if (p2up) {
+            paddle2y = paddle2y - 5;
+        } else if (p2down) {
+            paddle2y = paddle2y + 5;
+        }
+        
+        //bounce off right paddle
+        if(ballx + 50 > 580 && bally +50 > paddle2y 
+                && bally < paddle2y + 140){
+            directionx = directionx*-1;
         }
     }
 
@@ -168,6 +182,12 @@ public class PongPractice extends JComponent implements ActionListener {
             } else if (key == KeyEvent.VK_S) {
                 p1down = true;
             }
+            int key2 = e.getKeyCode();
+            if (key2 == KeyEvent.VK_UP) {
+                p2up = true;
+            } else if (key2 == KeyEvent.VK_DOWN) {
+                p2down = true;
+            }
 
         }
 
@@ -179,6 +199,12 @@ public class PongPractice extends JComponent implements ActionListener {
                 p1up = false;
             } else if (key == KeyEvent.VK_S) {
                 p1down = false;
+            }
+            int key2 = e.getKeyCode();
+            if (key2 == KeyEvent.VK_UP) {
+                p2up = false;
+            } else if (key2 == KeyEvent.VK_DOWN) {
+                p2down = false;
             }
         }
     }
