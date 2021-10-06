@@ -14,6 +14,8 @@ public class HelloName implements Runnable, ActionListener {
     JPanel mainpanel = new JPanel();
     JTextField textbox = new JTextField();
     JTextField outputBox = new JTextField();
+    JButton button = new JButton("Say Hello");
+    JLabel outputbox = new JLabel();
 
     // Method to assemble our GUI
     public void run() {
@@ -25,20 +27,37 @@ public class HelloName implements Runnable, ActionListener {
         frame.setSize(800, 600);
         // shows the window
         frame.setVisible(true);
-        
+
         frame.add(mainpanel);
         mainpanel.setLayout(null);
-        
+
         //user textbox
-        textbox.setBounds(350, 290, 100, 20);
-        mainpanel.
+        textbox.setBounds(350, 100, 100, 20);
+        mainpanel.add(textbox);
+
+        //button
+        button.setBounds(350, 150, 100, 20);
+        mainpanel.add(button);
+        button.addActionListener(this);
+        button.setActionCommand("button");
+
+        //Output box
+        outputBox.setBounds(250, 300, 300, 100);
+        mainpanel.add(outputBox);
+
     }
 
     // method called when a button is pressed
     public void actionPerformed(ActionEvent e) {
         // get the command from the action
         String command = e.getActionCommand();
-        
+        //Command
+        if (command.equals("button")) {
+            //text to textbox
+            String name = textbox.getText();
+            outputBox.setText("Hello " + name);
+        }
+
     }
 
     // Main method to start our program
