@@ -48,26 +48,26 @@ public class GUISimpleCalculator implements Runnable, ActionListener {
         mainpanel.setLayout(null);
 
         //first number textbox
-        firstbox.setBounds(200, 150, 150, 25);
+        firstbox.setBounds(250, 150, 150, 25);
         mainpanel.add(firstbox);
 
         //second number textbox
-        secbox.setBounds(200, 250, 150, 25);
+        secbox.setBounds(250, 250, 150, 25);
         mainpanel.add(secbox);
 
         //Result Box
-        resbox.setBounds(200, 350, 150, 25);
+        resbox.setBounds(250, 350, 150, 25);
         mainpanel.add(resbox);
         resbox.setEnabled(false);
         
         //labels
-        First.setBounds(100,150,100,25);
+        First.setBounds(150,150,100,25);
         mainpanel.add(First);
         
-        Second.setBounds(100,250,100,25);
+        Second.setBounds(150,250,100,25);
         mainpanel.add(Second);
         
-        Result.setBounds(100,350,100,25);
+        Result.setBounds(150,350,100,25);
         mainpanel.add(Result);
         
         //Arithmetic buttons
