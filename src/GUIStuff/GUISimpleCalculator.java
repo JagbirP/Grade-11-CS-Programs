@@ -97,44 +97,31 @@ public class GUISimpleCalculator implements Runnable, ActionListener {
     public void actionPerformed(ActionEvent e) {
         // get the command from the action
         String command = e.getActionCommand();
-
+            String num1 = firstbox.getText();
+            String num2 = secbox.getText();
+            double num3 = Double.parseDouble(num1);
+            double num4 = Double.parseDouble(num2);
         //addition 
         if (command.equals("addbutton")) {
-            String add1 = firstbox.getText();
-            String add2 = secbox.getText();
-            double add3 = Double.parseDouble(add1);
-            double add4 = Double.parseDouble(add2);
-            double addtotal = add3 + add4;
+            double addtotal = num3 + num4;
             resbox.setText("" + addtotal);
         }
 
         // subtraction
         if (command.equals("subbutton")) {
-            String sub1 = firstbox.getText();
-            String sub2 = secbox.getText();
-            double sub3 = Double.parseDouble(sub1);
-            double sub4 = Double.parseDouble(sub2);
-            double subtotal = sub3 - sub4;
+            double subtotal = num3 - num4;
             resbox.setText("" + subtotal);
         }
 
         //multiplication
         if (command.equals("mulbutton")) {
-            String mul1 = firstbox.getText();
-            String mul2 = secbox.getText();
-            double mul3 = Double.parseDouble(mul1);
-            double mul4 = Double.parseDouble(mul2);
-            double multotal = mul3 * mul4;
+            double multotal = num3 * num4;
             resbox.setText("" + multotal);
         }
 
         //division
         if (command.equals("divbutton")) {
-            String div1 = firstbox.getText();
-            String div2 = secbox.getText();
-            double div3 = Double.parseDouble(div1);
-            double div4 = Double.parseDouble(div2);
-            double divtotal = div3 / div4;
+            double divtotal = num3 / num4;
             resbox.setText("" + divtotal);
         }
 
