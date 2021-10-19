@@ -35,11 +35,9 @@ public class SumofDigits {
         int num = n;
         
         while (n > 0) {
-            if (n > 0) {
                 rem = n % 10;
                 total = total + rem;
                 n = n / 10;
-            }
         }
         System.out.println("The sum of the digits in " + num + " equals " + total);
     }

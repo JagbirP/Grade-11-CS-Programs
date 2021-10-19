@@ -33,10 +33,8 @@ public class CountDigits2 {
         int num = n;
 
         while (n > 0) {
-            if (n > 0) {
                 n = n / 10;
                 count++;
-            }
         }
         System.out.println("There are " + count + " digits in " + num);
     }
