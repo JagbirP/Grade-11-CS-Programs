@@ -1,10 +1,10 @@
 package ForLoops;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
-import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
@@ -87,7 +87,11 @@ public class ArcherDrawingLoop extends JComponent implements ActionListener {
         g.clearRect(0, 0, WIDTH, HEIGHT);
 
         // GAME DRAWING GOES HERE
-        
+        for (int i = 0; i < 12; i++) {
+            g.setColor(Color.BLACK);
+            g.drawOval(100- (i*5), 100 - (i*5), 500-(i*50), 500-(i*50));
+            
+        }
         // GAME DRAWING ENDS HERE
     }
 
