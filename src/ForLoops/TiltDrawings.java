@@ -1,10 +1,11 @@
 package ForLoops;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
+import java.awt.Color;
+import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
@@ -18,11 +19,11 @@ import javax.swing.Timer;
  *
  * @author purej1485
  */
-public class ArcherDrawingLoop extends JComponent implements ActionListener {
+public class TiltDrawings extends JComponent implements ActionListener {
 
     // Height and Width of our game
     static final int WIDTH = 800;
-    static final int HEIGHT = 600;
+    static final int HEIGHT = 800;
 
     //Title of the window
     String title = "My Game";
@@ -41,7 +42,7 @@ public class ArcherDrawingLoop extends JComponent implements ActionListener {
     // GAME VARIABLES END HERE    
     // Constructor to create the Frame and place the panel in
     // You will learn more about this in Grade 12 :)
-    public ArcherDrawingLoop() {
+    public TiltDrawings() {
         // creates a windows to show my game
         JFrame frame = new JFrame(title);
 
@@ -81,11 +82,18 @@ public class ArcherDrawingLoop extends JComponent implements ActionListener {
         // always clear the screen first!
         g.clearRect(0, 0, WIDTH, HEIGHT);
 
-        // GAME DRAWING GOES HERE
-        for (int i = 0; i < 12; i++) {
-            g.setColor(Color.BLACK);
-            g.drawOval(100 + (i * 25), 50 + (i * 25), 500 - (i * 50), 500 - (i * 50));
+        Graphics2D g2d = (Graphics2D) g;
 
+        // GAME DRAWING GOES HERE
+        for (int i = 0; i < 360; i = i + 5) {
+            //move the origin to the centre
+            g2d.translate(400, 400);
+            //rotate the screen
+            g2d.rotate(Math.toRadians(i));
+            g.drawRect(0, 0, 100, 100);
+            //undo the translation
+            g2d.rotate(Math.toRadians(-i));
+            g2d.translate(-400, -400);
         }
         // GAME DRAWING ENDS HERE
     }
@@ -158,6 +166,6 @@ public class ArcherDrawingLoop extends JComponent implements ActionListener {
      */
     public static void main(String[] args) {
         // creates an instance of my game
-        ArcherDrawingLoop game = new ArcherDrawingLoop();
+        TiltDrawings game = new TiltDrawings();
     }
 }

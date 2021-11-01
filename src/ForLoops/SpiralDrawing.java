@@ -1,10 +1,10 @@
 package ForLoops;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
@@ -18,11 +18,11 @@ import javax.swing.Timer;
  *
  * @author purej1485
  */
-public class ArcherDrawingLoop extends JComponent implements ActionListener {
+public class SpiralDrawing extends JComponent implements ActionListener {
 
     // Height and Width of our game
     static final int WIDTH = 800;
-    static final int HEIGHT = 600;
+    static final int HEIGHT = 800;
 
     //Title of the window
     String title = "My Game";
@@ -41,7 +41,7 @@ public class ArcherDrawingLoop extends JComponent implements ActionListener {
     // GAME VARIABLES END HERE    
     // Constructor to create the Frame and place the panel in
     // You will learn more about this in Grade 12 :)
-    public ArcherDrawingLoop() {
+    public SpiralDrawing() {
         // creates a windows to show my game
         JFrame frame = new JFrame(title);
 
@@ -82,21 +82,39 @@ public class ArcherDrawingLoop extends JComponent implements ActionListener {
         g.clearRect(0, 0, WIDTH, HEIGHT);
 
         // GAME DRAWING GOES HERE
-        for (int i = 0; i < 12; i++) {
-            g.setColor(Color.BLACK);
-            g.drawOval(100 + (i * 25), 50 + (i * 25), 500 - (i * 50), 500 - (i * 50));
+        double angle = 0;
+        double r = 0;
+        int oldX = 400;
+        int oldY = 400;
 
+        for (int i = 0; i < 400; i++) {
+            int x = (int) (r * Math.sin(angle));
+            int y = (int) (r * Math.cos(angle));
+            angle = angle + 5;
+            if (i % 2 == 0) {
+                r = r + 1;
+            }
+            if (i % 3 == 0) {
+                g.setColor(Color.RED);
+            } else if (i % 3 == 1) {
+                g.setColor(Color.blue);
+            } else {
+                g.setColor(Color.green);
+            }
+            g.drawLine(400 + x, 400 + y, oldX, oldY);
+
+            oldX = 400 + x;
+            oldY = 400 + y;
         }
+
         // GAME DRAWING ENDS HERE
     }
-
     // This method is used to do any pre-setup you might need to do
     // This is run before the game loop begins!
+
     public void setup() {
         // Any of your pre setup before the loop starts should go here
-
     }
-
     // The main game loop
     // In here is where all the logic for my game will go
     public void loop() {
@@ -158,6 +176,6 @@ public class ArcherDrawingLoop extends JComponent implements ActionListener {
      */
     public static void main(String[] args) {
         // creates an instance of my game
-        ArcherDrawingLoop game = new ArcherDrawingLoop();
+        SpiralDrawing game = new SpiralDrawing();
     }
 }
