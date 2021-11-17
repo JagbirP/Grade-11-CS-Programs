@@ -9,11 +9,10 @@ package grade.pkg11;
  *
  * @author purej1485
  */
-public class Grade11 {
+public class PigLatin_to_English {
 
-    /**
-     * @param args the command line arguments
-     */
+    
+    
     public static void main(String[] args) {
         // TODO code application logic here
     }
