@@ -11,13 +11,11 @@ import java.util.Scanner;
  *
  * @author purej1485
  */
-public class PigLatin_to_English {
+public class Javanais_To_English {
 
-    
-    
-    
-    
-    
+    /**
+     * @param args the command line arguments
+     */
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
 
