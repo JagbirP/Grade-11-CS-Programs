@@ -11,34 +11,54 @@ import java.util.Scanner;
  *
  * @author purej1485
  */
-public class Javanais_To_English {
+public class Javanais_English_Detector_And_Translator {
 
-    public static String javanaistoenglish(String word) {
+    // all the consonants and vowels
+    static String consonants = "bcdfghjklmnopqrstvwxyz";
+    static String vowels = "aeiou";
+
+    public static String englishtojavanais(String EtoJword) {
+
+        //change word to lowe4rcase
+        EtoJword = EtoJword.toLowerCase();
+
+        //boolean to check if word is done
+        boolean check = false;
+
+        //while the word is not done
+        while (check != true) {
+            
+            // make word into char array
+            char[] wordA = EtoJword.toCharArray();
+            
+        }
+
+        }
+
+    
+
+    public static String javanaistoenglish(String JtoEword) {
         //change word to all lower case 
-        word = word.toLowerCase();
+        JtoEword = JtoEword.toLowerCase();
 
         // boolean to check if word is done
         boolean check = false;
-
-        // all the consonants and vowels
-        String consonants = "bcdfghjklmnopqrstvwxyz";
-        String vowels = "aeiou";
 
         //while the word is not done
         while (check != true) {
 
             // make word into char array
-            char[] wordA = word.toCharArray();
+            char[] wordA = JtoEword.toCharArray();
 
             // turn char array into ascii values
             for (int i = 0; i < 10; i++) {
-                int[] ascii = new int[word.length()];
+                int[] ascii = new int[JtoEword.length()];
             }
 
-            for (int i = 0; i < word.length(); i++) {
+            for (int i = 0; i < JtoEword.length(); i++) {
 
                 // if the letter is a consonant
-                if ( i + 3 < word.length() && consonants.contains("" + wordA[i])
+                if (i + 3 < JtoEword.length() && consonants.contains("" + wordA[i])
                         // the consonant is followed by a
                         && wordA[i + 1] == 'a'
                         // the a is followed by v
@@ -50,16 +70,14 @@ public class Javanais_To_English {
                     check = false;
 
                     // seperate consonant and previous letters
-                    String beforecut = word.substring(0, i + 1);
+                    String beforecut = JtoEword.substring(0, i + 1);
 
                     //seperate all letters after "av"
-                    String aftercut = word.substring(i + 3);
+                    String aftercut = JtoEword.substring(i + 3);
 
                     // stick word with "av" taken out, together
-                    word = beforecut + aftercut;
-                    
-                    // update array
-                    wordA = word.toCharArray();
+                    JtoEword = beforecut + aftercut;
+                    wordA = JtoEword.toCharArray();
 
                 } // if the if statements are false, make the check true
                 // which means word is done
@@ -69,18 +87,16 @@ public class Javanais_To_English {
 
             }
         }
-        return word;
+        return JtoEword;
     }
 
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
 
         // Test Code
-        //String word = "stavubbavorn";
-       // String translation = englishtojavanais(word);
-       // System.out.print(translation + " ");
-
-        
+        // String word = "stavubbavorn";
+        // String translation = englishtojavanais(word);
+        // System.out.print(translation + " ");
         System.out.println("Please enter something to translate");
         String line = in.nextLine();
 
@@ -92,6 +108,7 @@ public class Javanais_To_English {
             System.out.print(translation + " ");
         }
         System.out.println("");
-         
+
     }
+
 }
