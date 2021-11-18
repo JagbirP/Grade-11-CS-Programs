@@ -27,15 +27,29 @@ public class Javanais_English_Detector_And_Translator {
 
         //while the word is not done
         while (check != true) {
-            
+
             // make word into char array
             char[] wordA = EtoJword.toCharArray();
-            
-        }
+
+            for (int i = 0; i < EtoJword.length(); i++) {
+
+                // make sure i-1 is possible 
+                if (i-1 >= 0 &&
+                        //check if i is a vowel
+                        vowels.contains("" + wordA[i])
+                        // if i is a vowel and there is a consonant before i
+                        && consonants.contains("" + wordA[i - 1])) {
+                    
+                    
+                    
+                }
+                
+            }
 
         }
 
-    
+        return EtoJword;
+    }
 
     public static String javanaistoenglish(String JtoEword) {
         //change word to all lower case 
@@ -49,11 +63,6 @@ public class Javanais_English_Detector_And_Translator {
 
             // make word into char array
             char[] wordA = JtoEword.toCharArray();
-
-            // turn char array into ascii values
-            for (int i = 0; i < 10; i++) {
-                int[] ascii = new int[JtoEword.length()];
-            }
 
             for (int i = 0; i < JtoEword.length(); i++) {
 

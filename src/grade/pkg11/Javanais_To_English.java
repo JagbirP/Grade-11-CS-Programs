@@ -30,15 +30,10 @@ public class Javanais_To_English {
             // make word into char array
             char[] wordA = word.toCharArray();
 
-            // turn char array into ascii values
-            for (int i = 0; i < 10; i++) {
-                int[] ascii = new int[word.length()];
-            }
-
             for (int i = 0; i < word.length(); i++) {
 
-                // if the letter is a consonant
-                if ( i + 3 < word.length() && consonants.contains("" + wordA[i])
+                // if the letter is a consonant and i + 3 is not longer than the word
+                if (i + 3 < word.length() && consonants.contains("" + wordA[i])
                         // the consonant is followed by a
                         && wordA[i + 1] == 'a'
                         // the a is followed by v
@@ -57,7 +52,7 @@ public class Javanais_To_English {
 
                     // stick word with "av" taken out, together
                     word = beforecut + aftercut;
-                    
+
                     // update array
                     wordA = word.toCharArray();
 
@@ -77,10 +72,8 @@ public class Javanais_To_English {
 
         // Test Code
         //String word = "stavubbavorn";
-       // String translation = englishtojavanais(word);
-       // System.out.print(translation + " ");
-
-        
+        // String translation = englishtojavanais(word);
+        // System.out.print(translation + " ");
         System.out.println("Please enter something to translate");
         String line = in.nextLine();
 
@@ -92,6 +85,6 @@ public class Javanais_To_English {
             System.out.print(translation + " ");
         }
         System.out.println("");
-         
+
     }
 }
