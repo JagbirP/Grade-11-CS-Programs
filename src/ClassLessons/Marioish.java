@@ -41,7 +41,7 @@ public class Marioish extends JComponent implements ActionListener {
     // YOUR GAME VARIABLES WOULD GO HERE
     Rectangle player = new Rectangle(200, 350, 50, 50);
     Rectangle ground = new Rectangle(0, 400, 400, 200);
-    Rectangle block = new Rectangle(350, 350, 50, 50);
+    Rectangle block = new Rectangle(250, 250, 50, 50);
 
     boolean left = false;
     boolean right = false;
@@ -145,10 +145,32 @@ public class Marioish extends JComponent implements ActionListener {
             } else if (left) {
                 player.x = player.x + intersect.width;
             }
-            
 
         }
 
+        // intersection with block
+        if (player.intersects(block)) {
+            Rectangle overlap = player.intersection(block);
+            if (overlap.height < overlap.width) {
+                // is it the top or bottom?
+                if (dy >= 0) {
+                    // on top of box
+                    dy = 0;
+                    onGround = true;
+                    player.y = player.y - overlap.height;
+                } else {
+                    player.y = player.y + overlap.height;
+                    dy = 0;
+                }
+            } else {
+                //left or right
+                if (player.x < block.x) {
+                    player.x = player.x - overlap.width;
+                } else {
+                    player.x = player.x + overlap.width;
+                }
+            }
+        }
     }
 
     // Used to implement any of the Mouse Actions
