@@ -15,9 +15,9 @@ public class Final_Project implements Runnable, ActionListener {
 
     // Calculator "Screen" where the inputted expression goes
     ColourLabel screen = new ColourLabel();
-    
-    
+    Font screenfont = new Font("Arial", Font.BOLD, 20);
 
+    String expression = new String();
     // Number Buttons
     JButton onebutton = new JButton("1");
     JButton twobutton = new JButton("2");
@@ -39,7 +39,7 @@ public class Final_Project implements Runnable, ActionListener {
     JButton decbutton = new JButton(".");
     JButton openbracbutton = new JButton("(");
     JButton closebracbutton = new JButton(")");
-    JButton equalbutton = new JButton ("=");
+    JButton equalbutton = new JButton("=");
 
     // Method to assemble our GUI
     public void run() {
@@ -56,66 +56,100 @@ public class Final_Project implements Runnable, ActionListener {
         mainpanel.setLayout(null);
 
         // Screen Label
-        screen.setBounds(25, 70, 275, 125);
+        screen.setBounds(50, 75, 250, 125);
         mainpanel.add(screen);
-        
+
         //number buttons
         onebutton.setBounds(50, 300, 50, 50);
         mainpanel.add(onebutton);
         onebutton.addActionListener(this);
         onebutton.setActionCommand("onebutton");
-        
+
         twobutton.setBounds(100, 300, 50, 50);
         mainpanel.add(twobutton);
-        
+        twobutton.addActionListener(this);
+        twobutton.setActionCommand("twobutton");
+
         threebutton.setBounds(150, 300, 50, 50);
         mainpanel.add(threebutton);
-        
+        threebutton.addActionListener(this);
+        threebutton.setActionCommand("threebutton");
+
         fourbutton.setBounds(50, 250, 50, 50);
         mainpanel.add(fourbutton);
-        
+        fourbutton.addActionListener(this);
+        fourbutton.setActionCommand("fourbutton");
+
         fivebutton.setBounds(100, 250, 50, 50);
         mainpanel.add(fivebutton);
-        
+        fivebutton.addActionListener(this);
+        fivebutton.setActionCommand("fivebutton");
+
         sixbutton.setBounds(150, 250, 50, 50);
         mainpanel.add(sixbutton);
-        
+        sixbutton.addActionListener(this);
+        sixbutton.setActionCommand("sixbutton");
+
         sevenbutton.setBounds(50, 200, 50, 50);
         mainpanel.add(sevenbutton);
-        
+        sevenbutton.addActionListener(this);
+        sevenbutton.setActionCommand("sevenbutton");
+
         eightbutton.setBounds(100, 200, 50, 50);
         mainpanel.add(eightbutton);
-        
+        eightbutton.addActionListener(this);
+        eightbutton.setActionCommand("eightbutton");
+
         ninebutton.setBounds(150, 200, 50, 50);
         mainpanel.add(ninebutton);
-        
+        ninebutton.addActionListener(this);
+        ninebutton.setActionCommand("ninebutton");
+
         zerobutton.setBounds(50, 350, 50, 50);
         mainpanel.add(zerobutton);
+        zerobutton.addActionListener(this);
+        zerobutton.setActionCommand("zerobutton");
 
         // Operations + Equal + Decinal Buttons
         addbutton.setBounds(200, 300, 50, 50);
         mainpanel.add(addbutton);
+        addbutton.addActionListener(this);
+        addbutton.setActionCommand("addbutton");
 
         subbutton.setBounds(250, 300, 50, 50);
         mainpanel.add(subbutton);
+        subbutton.addActionListener(this);
+        subbutton.setActionCommand("subbutton");
 
         mulbutton.setBounds(200, 250, 50, 50);
         mainpanel.add(mulbutton);
+        mulbutton.addActionListener(this);
+        mulbutton.setActionCommand("mulbutton");
 
         divbutton.setBounds(250, 250, 50, 50);
         mainpanel.add(divbutton);
+        divbutton.addActionListener(this);
+        divbutton.setActionCommand("divbutton");
 
         decbutton.setBounds(100, 350, 50, 50);
         mainpanel.add(decbutton);
+        decbutton.addActionListener(this);
+        decbutton.setActionCommand("decbutton");
 
         openbracbutton.setBounds(200, 200, 50, 50);
         mainpanel.add(openbracbutton);
+        openbracbutton.addActionListener(this);
+        openbracbutton.setActionCommand("openbracbutton");
 
         closebracbutton.setBounds(250, 200, 50, 50);
         mainpanel.add(closebracbutton);
-        
-        equalbutton.setBounds(150,350,150,50);
+        closebracbutton.addActionListener(this);
+        closebracbutton.setActionCommand("closebracbutton");
+
+        equalbutton.setBounds(150, 350, 150, 50);
         mainpanel.add(equalbutton);
+        equalbutton.addActionListener(this);
+        equalbutton.setActionCommand("equalbutton");
     }
 
     // method called when a button is pressed
@@ -123,6 +157,76 @@ public class Final_Project implements Runnable, ActionListener {
         // get the command from the action
         String command = e.getActionCommand();
 
+        // update the screen for each inputted number/operation when pressed
+        switch (command) {
+            case "onebutton":
+                expression = expression + "1";
+                break;
+            case "twobutton":
+                expression = expression + "2";
+                break;
+            case "threebutton":
+                expression = expression + "3";
+                break;
+            case "fourbutton":
+                expression = expression + "4";
+                break;
+            case "fivebutton":
+                expression = expression + "5";
+                break;
+            case "sixbutton":
+                expression = expression + "6";
+                break;
+            case "sevenbutton":
+                expression = expression + "7";
+                break;
+            case "eightbutton":
+                expression = expression + "8";
+                break;
+            case "ninebutton":
+                expression = expression + "9";
+                break;
+            case "zerobutton":
+                expression = expression + "0";
+                break;
+            case "addbutton":
+                expression = expression + "+";
+                break;
+            case "subbutton":
+                expression = expression + "-";
+                break;
+            case "mulbutton":
+                expression = expression + "*";
+                break;
+            case "divbutton":
+                expression = expression + "/";
+                break;
+            case "decbutton":
+                expression = expression + ".";
+                break;
+            case "openbracbutton":
+                expression = expression + "(";
+                break;
+            case "closebracbutton":
+                expression = expression + ")";
+                break;
+            default:
+                break;
+        }
+        // updates screen for all numbers and operations
+        screen.setText(expression);
+        screen.setFont(screenfont);
+        
+
+        
+    }
+
+    // Calculate the answer and display to screen
+    public void Answer(String answer) {
+        
+        char[] expressionA = expression.toCharArray();
+        
+        
     }
 
     // Main method to start our program
@@ -131,5 +235,6 @@ public class Final_Project implements Runnable, ActionListener {
         Final_Project gui = new Final_Project();
         // Lets the computer know to start it in the event thread
         SwingUtilities.invokeLater(gui);
+
     }
 }
