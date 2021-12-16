@@ -213,23 +213,60 @@ public class Final_Project implements Runnable, ActionListener {
             default:
                 break;
         }
+        // if the user hits equal, change the screen to the answer
+        if (command.equals("equalbutton")) {
+            expression = Answer(expression);
+        }
         // updates screen for all numbers and operations
         screen.setText(expression);
         screen.setFont(screenfont);
-        
 
-        
     }
 
     // Calculate the answer and display to screen
-    public void Answer(String answer) {
-        
-        char[] expressionA = expression.toCharArray();
-        
-        
+    public static String Answer(String exp) {
+
+        // answer in integer form
+        int answer = 0;
+
+        // all the single digit numbers
+        String numbers = "1234567890";
+
+        // all the operations
+        String operations = "-+*/";
+
+        // turn expression into a character array
+        char[] expressionA = exp.toCharArray();
+
+        // scan through expression
+        for (int i = 0; i < exp.length(); i++) {
+
+            // if the character is a number
+            if (numbers.contains("" + expressionA[i])) {
+
+                // turn the number into an integer (parse int), then solve the operation
+                if (i + 2 < exp.length() && expressionA[i + 1] == '+') {
+                    answer = Integer.parseInt("" + expressionA[i]) + Integer.parseInt("" + expressionA[i + 2]);
+
+                } else if (i + 2 < exp.length() && expressionA[i + 1] == '-') {
+                    answer = Integer.parseInt("" + expressionA[i]) - Integer.parseInt("" + expressionA[i + 2]);
+
+                } else if (i + 2 < exp.length() && expressionA[i + 1] == '*') {
+                    answer = Integer.parseInt("" + expressionA[i]) * Integer.parseInt("" + expressionA[i + 2]);
+
+                } else if (i + 2 < exp.length() && expressionA[i + 1] == '/') {
+                    answer = Integer.parseInt("" + expressionA[i]) / Integer.parseInt("" + expressionA[i + 2]);
+                }
+
+            }
+        }
+
+        exp = Integer.toString(answer);
+
+        return exp;
     }
 
-    // Main method to start our program
+// Main method to start our program
     public static void main(String[] args) {
         // Creates an instance of our program
         Final_Project gui = new Final_Project();
@@ -237,4 +274,5 @@ public class Final_Project implements Runnable, ActionListener {
         SwingUtilities.invokeLater(gui);
 
     }
+
 }
