@@ -238,7 +238,30 @@ public class Final_Project implements Runnable, ActionListener {
         // turn expression into a character array
         char[] expressionA = exp.toCharArray();
 
-        // scan through expression
+        // set the answer equal to the first digit in the expression
+        answer = Integer.parseInt("" + expressionA[0]);
+
+        for (int i = 1; i < exp.length(); i++) {
+
+            // go through each operation and update answer until the expression is done
+            if (operations.contains("" + expressionA[i])) {
+                // turn the number into an integer (parse int), then solve the operation
+                if (i + 1 < exp.length() && expressionA[i] == '+') {
+                    answer = answer + Integer.parseInt("" + expressionA[i + 1]);
+
+                } else if (i + 1 < exp.length() && expressionA[i] == '-') {
+                    answer = answer - Integer.parseInt("" + expressionA[i + 1]);
+
+                } else if (i + 1 < exp.length() && expressionA[i] == '*') {
+                    answer = answer * Integer.parseInt("" + expressionA[i + 1]);
+
+                } else if (i + 1 < exp.length() && expressionA[i] == '/') {
+                    answer = answer / Integer.parseInt("" + expressionA[i + 1]);
+                }
+            }
+        }
+
+        /* scan through expression (single digit, single operation)
         for (int i = 0; i < exp.length(); i++) {
 
             // if the character is a number
@@ -260,7 +283,7 @@ public class Final_Project implements Runnable, ActionListener {
 
             }
         }
-
+         */
         exp = Integer.toString(answer);
 
         return exp;
