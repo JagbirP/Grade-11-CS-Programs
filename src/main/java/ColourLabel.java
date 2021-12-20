@@ -19,5 +19,5 @@ public class ColourLabel extends JLabel {
         super.paint(g);
     }
     
-}
+} fasfasfasf
 
