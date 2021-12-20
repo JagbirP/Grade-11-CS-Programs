@@ -226,8 +226,8 @@ public class Final_Project implements Runnable, ActionListener {
     // Calculate the answer and display to screen
     public static String Answer(String exp) {
 
-        // answer in integer form
-        int answer = 0;
+        // answer in double form
+        double answer = 0;
 
         // all the single digit numbers
         String numbers = "1234567890";
@@ -239,24 +239,24 @@ public class Final_Project implements Runnable, ActionListener {
         char[] expressionA = exp.toCharArray();
 
         // set the answer equal to the first digit in the expression
-        answer = Integer.parseInt("" + expressionA[0]);
+        answer = Double.parseDouble("" + expressionA[0]);
 
         for (int i = 1; i < exp.length(); i++) {
 
             // go through each operation and update answer until the expression is done
             if (operations.contains("" + expressionA[i])) {
-                // turn the number into an integer (parse int), then solve the operation
+                // turn the number into a double (parse double), then solve the operation
                 if (i + 1 < exp.length() && expressionA[i] == '+') {
-                    answer = answer + Integer.parseInt("" + expressionA[i + 1]);
+                    answer = answer + Double.parseDouble("" + expressionA[i + 1]);
 
                 } else if (i + 1 < exp.length() && expressionA[i] == '-') {
-                    answer = answer - Integer.parseInt("" + expressionA[i + 1]);
+                    answer = answer - Double.parseDouble("" + expressionA[i + 1]);
 
                 } else if (i + 1 < exp.length() && expressionA[i] == '*') {
-                    answer = answer * Integer.parseInt("" + expressionA[i + 1]);
+                    answer = answer * Double.parseDouble("" + expressionA[i + 1]);
 
                 } else if (i + 1 < exp.length() && expressionA[i] == '/') {
-                    answer = answer / Integer.parseInt("" + expressionA[i + 1]);
+                    answer = answer / Double.parseDouble("" + expressionA[i + 1]);
                 }
             }
         }
@@ -284,7 +284,7 @@ public class Final_Project implements Runnable, ActionListener {
             }
         }
          */
-        exp = Integer.toString(answer);
+        exp = Double.toString(answer);
 
         return exp;
     }
