@@ -6,10 +6,7 @@ import java.awt.event.*;
 import java.util.Arrays;
 import java.util.regex.*;
 
-/**
- *
- * @author purej1485
- */
+
 public class Final_Project implements Runnable, ActionListener {
 
     // Class Variables  
