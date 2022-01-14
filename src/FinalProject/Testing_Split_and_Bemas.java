@@ -4,6 +4,7 @@
  */
 package FinalProject;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 /**
@@ -15,15 +16,52 @@ public class Testing_Split_and_Bemas {
     /**
      * @param args the command line arguments
      */
+    // expression I am working with
+    static String expression = "5 + 5 / 10 - 5 / 2";
+
+    // turn the expression into an array of strings with split
+    static String[] nums = expression.split(" ");
+
+    // updates the expression string by taking out blanks and commas during conversion
+    public static String toText(String[] nums) {
+
+        String output = "";
+
+        for (int i = 0; i < nums.length; i++) {
+
+            // if there is a blank, do nothing, else add it to output with spaces
+            if (nums[i].equals("")) {
+
+            } else {
+                output += nums[i];
+                if (i != nums.length - 1) {
+                    output += " ";
+                }
+
+            }
+        }
+
+        return output;
+    }
+
+    // check if the string array still has multipication or division
+    public static boolean muldivCheck(String[] nums) {
+
+        boolean check = false;
+
+        for (int i = 0; i < nums.length; i++) {
+            if ("*".equals(nums[i]) || "/".equals(nums[i])) {
+                check = true;
+                break;
+            }
+
+        }
+        return check;
+    }
+
     public static void main(String[] args) {
 
         Scanner in = new Scanner(System.in);
-
-        // expression I am working with
-        String expression = "12 + 6 / 2 - 4 * 10";
-
-        // turn the expression into an array of strings with split
-        String[] nums = expression.split(" ");
 
         //answer variable
         double answer = 0;
@@ -34,32 +72,131 @@ public class Testing_Split_and_Bemas {
         // all the operations
         String operations = "-+*/";
 
-        // hold the first number in the expression
-        answer = Double.parseDouble("" + nums[0]);
+        // variable to check for multipication/division
+        boolean Checkmuldiv = false;
 
-        //go through the string array and check for operations and solve
-        for (int i = 0; i < nums.length; i++) {
+        // until there is only 1 number left, aka until the expression is solved
+        while (nums.length != 1) {
+            //go through the string array and check for operations and solve
+            for (int i = 0; i < nums.length; i++) {
 
-            if (operations.contains("" + nums[i])) {
-                // turn the number into a double (parse double), then solve the operation
-                if (i + 1 < nums.length && "+".equals(nums[i])) {
-                    answer = answer + Double.parseDouble("" + nums[i + 1]);
+                // if the operation is found
+                if (operations.contains("" + nums[i])) {
 
-                } else if (i + 1 < nums.length && "-".equals(nums[i])) {
-                    answer = answer - Double.parseDouble("" + nums[i + 1]);
+                    // check to see if there is multipication or division 
+                    Checkmuldiv = muldivCheck(nums);
 
-                } else if (i + 1 < nums.length && "*".equals(nums[i])) {
-                    answer = answer * Double.parseDouble("" + nums[i + 1]);
+                    if ("*".equals(nums[i]) || "/".equals(nums[i])) {
+                        while (Checkmuldiv != false) {
 
-                } else if (i + 1 < nums.length && "/".equals(nums[i])) {
-                    answer = answer / Double.parseDouble("" + nums[i + 1]);
+                            
+                            // in the expression, and solve if there is
+                            // if it is either operation, do the operation and then make 
+                            // i-1 into the answer
+                            if ("*".equals(nums[i])) {
+                                // do the operation and make i-1 
+                                nums[i - 1] = Double.toString(Double.parseDouble(""
+                                        + nums[i - 1]) * Double.parseDouble("" + nums[i + 1]));
+
+                                // remove the parts of the expression already operated
+                                nums[i] = "";
+                                nums[i + 1] = "";
+
+                                // update the expression string to match new expression
+                                expression = Arrays.toString(nums);
+
+                                // remove opening and closing brackets from string conversion
+                                expression = expression.substring(1, expression.length() - 1);
+
+                                // send to method toText
+                                expression = toText(nums);
+
+                                // update string array
+                                nums = expression.split(" ");
+
+                                System.out.println("hi");
+
+                            } else if ("/".equals(nums[i])) {
+                                // do the operation and make i-1 
+                                nums[i - 1] = Double.toString(Double.parseDouble(""
+                                        + nums[i - 1]) / Double.parseDouble("" + nums[i + 1]));
+
+                                // remove the parts of the expression already operated
+                                nums[i] = "";
+                                nums[i + 1] = "";
+
+                                // update the expression string to match new expression
+                                expression = Arrays.toString(nums);
+
+                                // remove opening and closing brackets from string conversion
+                                expression = expression.substring(1, expression.length() - 1);
+
+                                // send to method toText
+                                expression = toText(nums);
+
+                                // update string array
+                                nums = expression.split(" ");
+
+                                System.out.println("hello");
+
+                            }
+                            // check if there is division or multipication left
+                            Checkmuldiv = muldivCheck(nums);
+
+                        }
+                    }
                 }
-                
+                /*
+                    if (nums.length != 1 && "+".equals(nums[i])) {
+                        // do the operation and make i-1 
+                        nums[i - 1] = Double.toString(Double.parseDouble(""
+                                + nums[i - 1]) + Double.parseDouble("" + nums[i + 1]));
 
+                        // remove the parts of the expression already operated
+                        nums[i] = "";
+                        nums[i + 1] = "";
+
+                        // update the expression string to match new expression
+                        expression = Arrays.toString(nums);
+
+                        // remove opening and closing brackets from string conversion
+                        expression = expression.substring(1, expression.length() - 1);
+
+                        // send to method toText
+                        expression = toText(nums);
+
+                        // update string array
+                        nums = expression.split(" ");
+
+                        System.out.println(expression);
+
+                    }
+
+                    if (nums.length != 1 && "-".equals(nums[i])) {
+                        // do the operation and make i-1 
+                        nums[i - 1] = Double.toString(Double.parseDouble(""
+                                + nums[i - 1]) - Double.parseDouble("" + nums[i + 1]));
+
+                        // remove the parts of the expression already operated
+                        nums[i] = "";
+                        nums[i + 1] = "";
+
+                        // update the expression string to match new expression
+                        expression = Arrays.toString(nums);
+
+                        // remove opening and closing brackets from string conversion
+                        expression = expression.substring(1, expression.length() - 1);
+
+                        // send to method toText
+                        expression = toText(nums);
+
+                        // update string array
+                        nums = expression.split(" ");
+
+                        System.out.println(expression);
+
+                    } */
             }
-
         }
-        
-        System.out.println(answer);
     }
 }
