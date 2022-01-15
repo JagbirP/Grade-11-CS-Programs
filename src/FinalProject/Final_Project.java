@@ -6,7 +6,6 @@ import java.awt.event.*;
 import java.util.Arrays;
 import java.util.regex.*;
 
-
 public class Final_Project implements Runnable, ActionListener {
 
     // Class Variables  
@@ -18,7 +17,7 @@ public class Final_Project implements Runnable, ActionListener {
 
     // math expression
     String expression = new String();
-    
+
     // Number Buttons
     JButton onebutton = new JButton("1");
     JButton twobutton = new JButton("2");
@@ -41,9 +40,8 @@ public class Final_Project implements Runnable, ActionListener {
     JButton openbracbutton = new JButton("(");
     JButton closebracbutton = new JButton(")");
     JButton equalbutton = new JButton("=");
-    
+
     //extra buttons
-    
     JButton clearbutton = new JButton("CLEAR");
 
     // Method to assemble our GUI
@@ -151,12 +149,12 @@ public class Final_Project implements Runnable, ActionListener {
         mainpanel.add(closebracbutton);
         closebracbutton.addActionListener(this);
         closebracbutton.setActionCommand("closebracbutton");
-*/
+         */
         clearbutton.setBounds(200, 200, 100, 50);
         mainpanel.add(clearbutton);
         clearbutton.addActionListener(this);
         clearbutton.setActionCommand("clearbutton");
-        
+
         equalbutton.setBounds(150, 350, 150, 50);
         mainpanel.add(equalbutton);
         equalbutton.addActionListener(this);
@@ -276,9 +274,9 @@ public class Final_Project implements Runnable, ActionListener {
 
     // Calculate the answer and display to screen
     public String Answer(String expression) {
-        
+
         String[] nums = expression.split(" ");
-        
+
         // variable to check for multipication/division
         boolean Checkmuldiv = false;
 
@@ -409,8 +407,6 @@ public class Final_Project implements Runnable, ActionListener {
         Final_Project gui = new Final_Project();
         // Lets the computer know to start it in the event thread
         SwingUtilities.invokeLater(gui);
-        
-        
 
     }
 
