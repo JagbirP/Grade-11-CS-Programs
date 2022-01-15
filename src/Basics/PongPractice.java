@@ -1,3 +1,5 @@
+package Basics;
+
 
 import java.awt.Dimension;
 import java.awt.Graphics;
