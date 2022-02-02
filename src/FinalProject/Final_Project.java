@@ -227,7 +227,9 @@ public class Final_Project implements Runnable, ActionListener {
         }
         // if the user hits equal, change the screen to the answer
         if (command.equals("equalbutton")) {
+             
             expression = Answer(expression);
+            expression = expression.substring(0, expression.length() - 1);
         }
         // updates screen for all numbers and operations
         screen.setText(expression);
